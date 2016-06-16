@@ -6,18 +6,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>JSF tutorial</title>
+	<title>DemoWeb</title>
 </h:head>
 
 
 <h:body>
 
-<p:calendar></p:calendar>
-
-<h:form>
-
-
-	<p:commandButton value="Next" action="next" actionListener="#{userBean.updateData}"> </p:commandButton>
+<h:form id="form_signup">
+   <h:panelGrid columns="2" cellpadding="5">
+    <p:outputLabel value="Name:"></p:outputLabel>
+    <p:inputText id="name" value="#{userBean.name}" ></p:inputText>
+    <p:outputLabel value="Surname:"></p:outputLabel>
+    <p:inputText id="surname" value="#{userBean.surname}"></p:inputText>
+    <p:outputLabel value="Username:"></p:outputLabel>
+    <p:inputText id="username" value="#{userBean.username}"></p:inputText>
+    <p:outputLabel value="Password:" ></p:outputLabel>
+    <p:password id="password" value="#{userBean.password}"></p:password>
+    <p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
+    <p:calendar id="button_calendar" value="#{userBean.birthday}" ></p:calendar>
+    <p:outputLabel value="Country:"></p:outputLabel>
+    <p:inputText id="country" value="#{userBean.country}"></p:inputText>
+    <p:outputLabel value="City:"></p:outputLabel>
+    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
+    <p:outputLabel value="Province:"></p:outputLabel>
+    <p:inputText id="province" value="#{userBean.province}"></p:inputText>
+    </h:panelGrid>   
+    <p:commandButton value="Next" actionListener="#{userBean.updateData}"> </p:commandButton>
 
 </h:form>
 
