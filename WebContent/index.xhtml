@@ -1,41 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>DemoWeb</title>
 </h:head>
 
-
 <h:body>
+<h:form id="form_login">
+        
+		<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();"
+			title="login">
+			<p:outputLabel>Login</p:outputLabel>
+		</h:outputLink>
+		<p:growl id="index_page" showDetail="true" sticky="true" />
 
-<h:form id="form_signup">
-   <h:panelGrid columns="2" cellpadding="5">
-    <p:outputLabel value="Name:"></p:outputLabel>
-    <p:inputText id="name" value="#{userBean.name}" ></p:inputText>
-    <p:outputLabel value="Surname:"></p:outputLabel>
-    <p:inputText id="surname" value="#{userBean.surname}"></p:inputText>
-    <p:outputLabel value="Username:"></p:outputLabel>
-    <p:inputText id="username" value="#{userBean.username}"></p:inputText>
-    <p:outputLabel value="Password:" ></p:outputLabel>
-    <p:password id="password" value="#{userBean.password}"></p:password>
-    <p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
-    <p:calendar id="button_calendar" value="#{userBean.birthday}" ></p:calendar>
-    <p:outputLabel value="Country:"></p:outputLabel>
-    <p:inputText id="country" value="#{userBean.country}"></p:inputText>
-    <p:outputLabel value="City:"></p:outputLabel>
-    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
-    <p:outputLabel value="Province:"></p:outputLabel>
-    <p:inputText id="province" value="#{userBean.province}"></p:inputText>
-    </h:panelGrid>   
-    <p:commandButton value="Next" actionListener="#{userBean.updateData}"> </p:commandButton>
+		<p:dialog header="Login" widgetVar="dlg" resizable="false">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Username:" />
+				<p:inputText id="username" value="#{userLoginView.username}"
+					required="true" label="username" />
 
-</h:form>
+				<h:outputLabel for="password" value="Password:" />
+				<p:password id="password" value="#{userLoginView.password}"
+					required="true" label="password" />
+
+				<f:facet name="footer">
+					<p:commandButton value="Login" update="index_page"
+						actionListener="#{userLoginView.login}"
+						oncomplete="handleLoginRequest(xhr, status, args)"
+					 />
+				</f:facet>
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
 
 
+<!-- <script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+        if(args.validationFailed || !args.loggedIn) {
+            PF('dlg').jq.effect("shake", {times:5}, 100);
+        }
+        else {
+            PF('dlg').hide();
+            $('#loginLink').fadeOut();
+        }
+    }
+</script> -->
 </h:body>
+
+
 
 </html>

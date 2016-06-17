@@ -1,6 +1,7 @@
-package ManagedBean;
+package managedBean;
 import java.util.Date;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -9,7 +10,7 @@ import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import model.*;
 @ManagedBean(name="userBean")
-@SessionScoped
+@RequestScoped
 public class ControllerUser {
 	
 	@Inject 
@@ -41,7 +42,7 @@ public class ControllerUser {
 		user.setCity(city);
 		user.setBirthday(birthday);
 		userHome.persist(user);
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Inserito", name);
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Registrato utente:", name);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 

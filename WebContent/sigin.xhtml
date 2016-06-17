@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>DemoWeb</title>
+</h:head>
+
+
+<h:body>
+
+<h:form id="form_signup">
+
+	<p:growl id="growl" showDetail="true" sticky="true" />
+    <h:panelGrid columns="2" cellpadding="5">
+    <p:outputLabel value="Name:"></p:outputLabel>
+    <p:inputText id="name" value="#{userBean.name}" required="true"></p:inputText>
+    <p:outputLabel value="Surname:"></p:outputLabel>
+    <p:inputText id="surname" value="#{userBean.surname}"></p:inputText>
+    <p:outputLabel value="Username(email):" ></p:outputLabel>
+    <p:inputText id="username" value="#{userBean.username}" required="true"></p:inputText>
+    <p:outputLabel value="Password:" ></p:outputLabel>
+    <p:password id="password" value="#{userBean.password}" required="true"></p:password>
+    <p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
+    <p:calendar id="button_calendar" value="#{userBean.birthday}" ></p:calendar>
+    <p:outputLabel value="Country:"></p:outputLabel>
+    <p:inputText id="country" value="#{userBean.country}"></p:inputText>
+    <p:outputLabel value="City:"></p:outputLabel>
+    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
+    <p:outputLabel value="Province:"></p:outputLabel>
+    <p:inputText id="province" value="#{userBean.province}"></p:inputText>
+    </h:panelGrid>   
+    <p:commandButton value="Next" actionListener="#{userBean.updateData}" update="growl">  </p:commandButton>
+
+</h:form>
+
+
+</h:body>
+
+</html>
