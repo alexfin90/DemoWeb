@@ -3,29 +3,26 @@ package managedBean;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
 
 
-@ManagedBean(name="userLoginView")
-@RequestScoped
-public class BeanLogin {
+@ManagedBean(name="userView")
+@SessionScoped
+public class UserView {
 
 	private String username;
 	private String password;
 	
-	
-	
 	@Inject
 	private beanUtils.BeanLogin beanlogin;
 	
-	public BeanLogin() {
+	public UserView() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public void login(ActionEvent e){
 		RequestContext context = RequestContext.getCurrentInstance();
@@ -58,6 +55,10 @@ public class BeanLogin {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String nextPage(){
+		return "sigin";
 	}
 
 }
