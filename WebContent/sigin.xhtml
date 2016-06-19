@@ -28,10 +28,10 @@
     <p:calendar id="button_calendar" value="#{userBean.birthday}" ></p:calendar>
     <p:outputLabel value="Country:"></p:outputLabel>
     <p:inputText id="country" value="#{userBean.country}"></p:inputText>
-    <p:outputLabel value="City:"></p:outputLabel>
-    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
     <p:outputLabel value="Province:"></p:outputLabel>
     <p:inputText id="province" value="#{userBean.province}"></p:inputText>
+    <p:outputLabel value="City:"></p:outputLabel>
+    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
     </h:panelGrid>   
     <p:commandButton value="Next" actionListener="#{userBean.updateData}" update="growl">  </p:commandButton>
 

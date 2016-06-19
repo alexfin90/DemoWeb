@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Order</title>
+</h:head>
+
+
+<h:body>
+
+<h:form id="form_signup">
+
+    <p:growl id="growl" showDetail="true" sticky="true" />
+	
+	<p:outputLabel value="Riepilogo Ordine: "></p:outputLabel>
+	
+    <h:panelGrid columns="2" cellpadding="5">
+    <p:outputLabel value="Name Order: "></p:outputLabel>
+    <p:outputLabel value="#{ringView.selectedItem.name}"></p:outputLabel>
+    
+    <p:outputLabel value="Price Order: "></p:outputLabel>
+    <p:outputLabel value="#{ringView.selectedItem.price}"></p:outputLabel>
+    
+    <p:outputLabel value="Description Order: "></p:outputLabel>
+    <p:outputLabel value="#{ringView.selectedItem.desciption}"></p:outputLabel>
+    
+    <p:outputLabel value="User:"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.name}"></p:outputLabel>
+    
+    <p:outputLabel value="Surname:"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.surname}"></p:outputLabel>
+    
+    <p:outputLabel value="Country:"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.country}"></p:outputLabel>
+    
+    <p:outputLabel value="Province:"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.province}"></p:outputLabel>
+    
+    <p:outputLabel value="City:"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.city}"></p:outputLabel>
+    
+    <p:outputLabel value="Born:s"></p:outputLabel>
+    <p:outputLabel value="#{userView.user.birthday}"></p:outputLabel>
+    
+    <p:outputLabel value="particular requests:"></p:outputLabel>
+    <p:inputTextarea value="#{orderController.order.description}" ></p:inputTextarea> 
+
+    </h:panelGrid>   
+    
+	<p:commandButton value="Confirm"  update="growl" actionListener="#{orderController.cretateOrder}"></p:commandButton>
+</h:form>
+
+
+</h:body>
+
+</html>

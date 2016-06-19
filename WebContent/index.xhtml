@@ -10,9 +10,10 @@
 
 <h:body>
 <h:form id="form_login">
-        <h:panelGrid columns="2" cellpadding="5">
-		<p:commandButton value="Login" onclick="PF('dlg').show();" title="login"></p:commandButton>
-		<p:commandButton value="Sigin" action="#{userView.nextPage}" title="signin"></p:commandButton>
+        <h:panelGrid columns="3" cellpadding="5">
+		<p:commandButton value="Login" disabled="#{userView.login}"  onclick="PF('dlg').show();" title="login"></p:commandButton>
+		<p:commandButton value="Sigin" disabled="#{userView.login}" action="#{userView.nextPage}" title="signin"></p:commandButton>
+		<p:commandButton value="Logout" rendered="#{userView.login}" actionListener="#{userView.logout}" update="@form" title="logout"></p:commandButton>
 		</h:panelGrid>
 		<p:growl id="index_page" showDetail="true" sticky="true" />
 		<p:dialog header="Login" widgetVar="dlg" resizable="false" showEffect="explode">
@@ -26,7 +27,7 @@
 					required="true" label="password" />
 
 				<f:facet name="footer">
-					<p:commandButton value="Login" update="index_page"
+					<p:commandButton value="Login" update="@form"
 						actionListener="#{userView.login}"
 						oncomplete="handleLoginRequest(xhr, status, args)"
 					 />
@@ -34,46 +35,56 @@
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
-	
+
 	<h:form id="form_ring">
-	<h1 style="margin-top: 0 " align="center">Bestsellers</h1>
-    <p:ring id="basic" value="#{ringView.items}" var="item">
-        <p:outputPanel style="text-align: center;" layout="block">
-            ciao
+		<h1 style="margin-top: 0" align="center">Order an Item:</h1>
+		<p:ring id="basic" value="#{ringView.items}" var="item">
+			<p:outputPanel style="text-align: center;" layout="block">
+            #{item.name}
             <br />
-            <p:commandButton update=":form_ring:itemDetail" icon="ui-icon-search" title="View" oncomplete="PF('itemDialog').show();">
-                <f:setPropertyActionListener value="#{item}" target="#{ringView.selectedItem}" />
-            </p:commandButton>
-        </p:outputPanel>
-    </p:ring>
-    
-      <p:dialog header="Item Info" widgetVar="itemDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="170">
-        <p:outputPanel id="itemDetail" style="text-align:center;" layout="block">
-            <p:panelGrid  columns="2" rendered="#{not empty ringView.selectedItem}" columnClasses="value">
-                <f:facet name="header">
-                    <p:graphicImage name="demo/images/car/#{ringView.selectedItem.name}-big.gif" /> 
-                </f:facet>
- 
-                <h:outputText value="Id:" />
-                <h:outputText value="#{ringView.selectedItem.idItem}" />
- 
-                <h:outputText value="Price" />
-                <h:outputText value="#{ringView.selectedItem.price}" />
- 
-                <h:outputText value="Brand: " />
-                <h:outputText value="Ferrari" />
- 
-                <h:outputText value="Color:" />
-                <h:outputText value="red"  />
-            </p:panelGrid>
-        </p:outputPanel>
-    </p:dialog>
-    </h:form>
-	
+				<p:commandButton update=":form_ring:itemDetail"
+					icon="ui-icon-search" title="View"
+					oncomplete="PF('itemDialog').show();">
+					<f:setPropertyActionListener value="#{item}"
+						target="#{ringView.selectedItem}" />
+				</p:commandButton>
+			</p:outputPanel>
+		</p:ring>
+
+		<p:dialog header="Item Info" widgetVar="itemDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false" width="250">
+			<p:outputPanel id="itemDetail" style="text-align:center;"
+				layout="block">
+				<p:panelGrid columns="2"
+					rendered="#{not empty ringView.selectedItem}" columnClasses="value">
+					<f:facet name="header">
+						<p:graphicImage 
+							 />
+					</f:facet>
+
+					<h:outputText value="Id:" />
+					<h:outputText value="#{ringView.selectedItem.idItem}" />
+
+					<h:outputText value="Price" />
+					<h:outputText value="#{ringView.selectedItem.price}" />
+
+					<h:outputText value="Name: " />
+					<h:outputText value="#{ringView.selectedItem.name}" />
+
+					<h:outputText value="Description:" />
+					<h:outputText value="#{ringView.selectedItem.desciption}" />
+
+				</p:panelGrid>
+				 <br />
+				<p:commandButton value="Book now" rendered="#{userView.login}" oncomplete="PF('itemDialog').hide();" action="#{ringView.pageOrder}"  ></p:commandButton> 
+			</p:outputPanel>
+		</p:dialog>
+	</h:form>
 
 
 
- <script type="text/javascript">
+
+	<script type="text/javascript">
     function handleLoginRequest(xhr, status, args) {
         if(args.validationFailed || !args.loggedIn) {
             PF('dlg').jq.effect("shake", {times:5}, 100);
