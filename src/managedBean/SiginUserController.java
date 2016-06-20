@@ -25,8 +25,10 @@ public class SiginUserController implements Serializable{
 	private String password;
 	private Date birthday;
 	private String city;
-	private String country;
-	private String province;
+//	private String country;
+//	private String province;
+	private Country country;
+	private Province province;
 	
 	@PostConstruct
 	public void init(){
@@ -38,9 +40,9 @@ public class SiginUserController implements Serializable{
 		user.setUsername(username);
 		user.setSurname(surname);
 		user.setPassword(password);
-		user.setProvince(province);
+		user.setProvince(province.getName());
 		user.setName(name);
-		user.setCountry(country);
+		user.setCountry(country.getName());
 		user.setCity(city);
 		user.setBirthday(birthday);
 		userHome.persist(user);
@@ -104,20 +106,21 @@ public class SiginUserController implements Serializable{
 		this.city = city;
 	}
 
-	public String getCountry() {
-		return country;
-	}
 
-	public void setCountry(String country) {
+	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-	public String getProvince() {
-		return province;
-	}
-
-	public void setProvince(String province) {
+	public void setProvince(Province province) {
 		this.province = province;
+	}
+	
+	public Country getCountry() {
+		return country;
+	}
+	
+	public Province getProvince() {
+		return province;
 	}
 
 }

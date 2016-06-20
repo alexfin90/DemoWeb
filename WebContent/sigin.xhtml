@@ -25,11 +25,12 @@
     <p:outputLabel value="Password:" ></p:outputLabel>
     <p:password id="password" value="#{userBean.password}" required="true"></p:password>
     <p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
-    <p:calendar id="button_calendar" value="#{userBean.birthday}" ></p:calendar>
-    <p:outputLabel value="Country:"></p:outputLabel>
-    <p:inputText id="country" value="#{userBean.country}"></p:inputText>
+	<p:calendar id="button_calendar" value="#{userBean.birthday}"
+	 locale="it" navigator="true" yearRange="c-50:c+50" ></p:calendar>
+	<p:outputLabel value="Country:"></p:outputLabel>
+	<p:inputText id="country" value="#{userBean.country.name}"></p:inputText>
     <p:outputLabel value="Province:"></p:outputLabel>
-    <p:inputText id="province" value="#{userBean.province}"></p:inputText>
+    <p:inputText id="province" value="#{userBean.province.name}"></p:inputText>
     <p:outputLabel value="City:"></p:outputLabel>
     <p:inputText id="city" value="#{userBean.city}"></p:inputText>
     </h:panelGrid>   
