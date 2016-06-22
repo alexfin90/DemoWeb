@@ -22,16 +22,13 @@ public class RingController implements Serializable{
 	@Inject 
 	private beanDao.ItemHome itemHome;
 	
-	@Inject
-	private beanDao.UserHome userHome;
 	
 
     
    @PostConstruct
     public void init() {
         items = new ArrayList<Item>();
-        items= itemHome.findAlItems();
-         
+        items= itemHome.findAlItems(); 
     }
    
    public List<Item> getItems() {

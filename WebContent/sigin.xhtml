@@ -12,31 +12,47 @@
 
 <h:body>
 
-<h:form id="form_signup">
+	<h:form id="form_signup">
 
-	<p:growl id="growl" showDetail="true" sticky="true" />
-    <h:panelGrid columns="2" cellpadding="5">
-    <p:outputLabel value="Name:"></p:outputLabel>
-    <p:inputText id="name" value="#{userBean.name}" required="true"></p:inputText>
-    <p:outputLabel value="Surname:"></p:outputLabel>
-    <p:inputText id="surname" value="#{userBean.surname}"></p:inputText>
-    <p:outputLabel value="Username(email):" ></p:outputLabel>
-    <p:inputText id="username" value="#{userBean.username}" required="true"></p:inputText>
-    <p:outputLabel value="Password:" ></p:outputLabel>
-    <p:password id="password" value="#{userBean.password}" required="true"></p:password>
-    <p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
-	<p:calendar id="button_calendar" value="#{userBean.birthday}"
-	 locale="it" navigator="true" yearRange="c-50:c+50" ></p:calendar>
-	<p:outputLabel value="Country:"></p:outputLabel>
-	<p:inputText id="country" value="#{userBean.country.name}"></p:inputText>
-    <p:outputLabel value="Province:"></p:outputLabel>
-    <p:inputText id="province" value="#{userBean.province.name}"></p:inputText>
-    <p:outputLabel value="City:"></p:outputLabel>
-    <p:inputText id="city" value="#{userBean.city}"></p:inputText>
-    </h:panelGrid>   
-    <p:commandButton value="Next" actionListener="#{userBean.updateData}" update="growl">  </p:commandButton>
+		<p:growl id="growl" showDetail="true" sticky="true" />
+		<h:panelGrid columns="2" cellpadding="5" style="margin-bottom:10px">
+			<p:outputLabel value="Name:"></p:outputLabel>
+			<p:inputText id="name" value="#{userBean.name}" required="true"></p:inputText>
+			<p:outputLabel value="Surname:"></p:outputLabel>
+			<p:inputText id="surname" value="#{userBean.surname}"></p:inputText>
+			<p:outputLabel value="Username:"></p:outputLabel>
+			<p:inputText id="username" value="#{userBean.username}"
+				required="true"></p:inputText>
+			<p:outputLabel value="Password:"></p:outputLabel>
+			<p:password id="password" value="#{userBean.password}"
+				required="true"></p:password>
+			<p:outputLabel id="birthday" value="Birthday:"></p:outputLabel>
+			<p:calendar id="button_calendar" value="#{userBean.birthday}"
+				locale="it" navigator="true" yearRange="c-80:c+80"></p:calendar>
+			<p:outputLabel value="Country:"></p:outputLabel>
+			<p:selectOneMenu id="selectcountry" value="#{userBean.country}"
+				effect="fold" converter="#{countryconvert}">
+				<f:selectItem value="#{userBean.prova}"  itemLabel="select one country"/>
+				<f:selectItems value="#{userBean.countries}" var="p"
+					itemLabel="#{p.name}" itemValue="#{p}" />
+				<p:ajax event="change" update="form_signup:selectprovince"
+					listener="#{userBean.countrySelectionChanged}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="Province:"></p:outputLabel>
+			<p:selectOneMenu id="selectprovince" value="#{userBean.province}"
+				effect="fold"  converter="#{provinceconvert}">
+				<f:selectItem value="#{userBean.prova}"  itemLabel="select one province"/>
+				<f:selectItems value="#{userBean.provinces}" var="p"
+					itemLabel="#{p.name}" itemValue="#{p}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="City:"></p:outputLabel>
+			<p:inputText id="city" value="#{userBean.city}"></p:inputText>
+		</h:panelGrid>
+		<p:commandButton value="Next"
+			actionListener="#{userBean.registerUser}" update="growl">
+		</p:commandButton>
 
-</h:form>
+	</h:form>
 
 
 </h:body>
