@@ -43,7 +43,7 @@
     <p:outputLabel value="City:"></p:outputLabel>
     <p:outputLabel value="#{userView.user.city}"></p:outputLabel>
     
-    <p:outputLabel value="Born:s"></p:outputLabel>
+    <p:outputLabel value="Born:"></p:outputLabel>
     <p:outputLabel value="#{userView.user.birthday}"></p:outputLabel>
     
     <p:outputLabel value="particular requests:"></p:outputLabel>
@@ -51,7 +51,7 @@
 
     </h:panelGrid>   
     
-	<p:commandButton value="Confirm"  update="growl" actionListener="#{orderController.cretateOrder}"></p:commandButton>
+	<p:commandButton value="Confirm" action="index" update="growl" actionListener="#{orderController.cretateOrder}"></p:commandButton>
 </h:form>
 
 

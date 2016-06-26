@@ -59,13 +59,11 @@ public class UserController implements Serializable {
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
-        this.user = userHome.findByUsername(username);
-        
-        
-        
+        this.user = userHome.findByUsername(username); 
 	}
 	
 	public void logout(ActionEvent e){
+		System.out.println("LOGOUT");
         FacesMessage message = null;
         setLogin(false);
     	message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Ok Log-out", username);

@@ -20,11 +20,11 @@
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="Username:" />
 				<p:inputText id="username" value="#{userView.username}"
-					required="true" label="username" />
+					 label="username" />
 
 				<h:outputLabel for="password" value="Password:" />
 				<p:password id="password" value="#{userView.password}"
-					required="true" label="password" />
+					 label="password" />
 
 				<f:facet name="footer">
 					<p:commandButton value="Login" update="@form"
@@ -58,8 +58,7 @@
 				<p:panelGrid columns="2"
 					rendered="#{not empty ringView.selectedItem}" columnClasses="value">
 					<f:facet name="header">
-						<p:graphicImage 
-							 />
+						<img src="http://d1ktyob8e4hu6c.cloudfront.net/pub/avatar/RUNA_11976821/communitygazzetta/ferrari_100420855_l.jpg" alt="" title=""/>
 					</f:facet>
 
 					<h:outputText value="Id:" />

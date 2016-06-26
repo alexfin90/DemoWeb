@@ -57,13 +57,10 @@ public class SiginUserController implements Serializable{
 	}
 	
 	public void registerUser(ActionEvent e){
-		System.out.println("updateData");
-		System.out.println(country.getName());
 		user.setUsername(username);
 		user.setSurname(surname);
 		user.setPassword(password);
 		user.setName(name);
-		
 		user.setCountry(country.getName());
 		user.setProvince(province.getName());
 		user.setCity(city);

@@ -21,7 +21,6 @@ public class Provinceconvert implements Converter {
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		// TODO Auto-generated method stub
 		
-		System.out.println("dsdsds");
 		if (value != null && value.trim().length() > 0) {
 			System.out.println("GetAsObject Province: " + value);
 			Province p = servinit.getProvinces().get(Integer.parseInt(value)-1);
